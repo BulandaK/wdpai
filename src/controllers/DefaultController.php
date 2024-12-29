@@ -1,16 +1,17 @@
 <?php
 
-require_once 'AppControler.php';
+require_once 'AppController.php';
 
 class DefaultController extends AppController{
     
     public function index() {
         
-        $this->render('login');
+        $this->render('main');
     }
     public function reserve() {
         
         $this->render('reserve');
     }
+    
 
 }

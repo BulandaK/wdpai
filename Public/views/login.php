@@ -23,23 +23,17 @@
       <div class="right-section">
         <div class="form-container">
           <h2>Log in</h2>
-          <form method="POST">
-            <!-- <input
-              type="text"
-              id="first-name"
-              name="first-name"
-              required
-              placeholder="first name"
-            />
+          <form method="POST" action="login"  >
+            <div>
+             <?php if(isset($messages)) 
+                {
+                  foreach ($messages as $message){
+                    echo $message;
+                  }
 
-            <input
-              type="text"
-              id="last-name"
-              name="last-name"
-              required
-              placeholder="last name"
-            /> -->
-
+                }
+             ?>
+            </div>
             <input
               type="email"
               id="email"

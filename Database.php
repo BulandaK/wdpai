@@ -15,7 +15,7 @@ class Database
         $this->username = USERNAME;
         $this->password = PASSWORD;
         $this->host = HOST;
-        // $this->port = PORT;
+        $this->port = PORT;
         $this->database = DATABASE;
         
     }
@@ -25,7 +25,7 @@ class Database
         try{
 
             $conn = new PDO(
-                "pgsql:host={$this->host};dbname={$this->database}",
+                "pgsql:host={$this->host};port={$this->port};dbname={$this->database}",
                 $this->username,
                 $this->password
             );

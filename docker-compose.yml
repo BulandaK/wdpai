@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9" # Używamy najnowszej wersji specyfikacji
 
 services:
   web:
@@ -9,8 +9,8 @@ services:
       - "8080:80"
     volumes:
       - .:/app/
-    links:
-      - php
+    depends_on:
+      - php # Lepsze od `links`, automatycznie określa zależność między kontenerami
 
   php:
     build:
@@ -18,3 +18,24 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+    depends_on:
+      - db # Lepsze od `links`
+    environment:
+      DB_HOST: db # Opcjonalne: Możesz dodać zmienne środowiskowe do komunikacji z bazą
+      DB_PORT: 5432
+
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cinema
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:

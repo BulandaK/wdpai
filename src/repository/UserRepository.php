@@ -26,4 +26,32 @@ class UserRepository extends Repository
             $user['surname']
         );
     }
+
+    public function createUser(string $email, string $password, string $name, string $surname): bool
+{
+    try {
+        // Przygotowanie zapytania SQL
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO users (email, password, name, surname) 
+            VALUES (:email, :password, :name, :surname)
+        ');
+
+        // Hashowanie hasła dla bezpieczeństwa
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Podstawienie wartości do zapytania
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+
+        // Wykonanie zapytania
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Obsługa błędów
+        error_log('Error creating user: ' . $e->getMessage());
+        return false;
+    }
+}
+
 }

@@ -23,21 +23,31 @@
       <div class="right-section">
         <div class="form-container">
           <h2>Create account</h2>
-          <form method="POST">
+          <form method="POST" action="/signUp">
+          <div>
+             <?php if(isset($messages)) 
+                {
+                  foreach ($messages as $message){
+                    echo $message;
+                  }
+
+                }
+             ?>
+            </div>
             <input
               type="text"
-              id="first-name"
-              name="first-name"
+              id="name"
+              name="name"
               required
-              placeholder="first name"
+              placeholder="name"
             />
 
             <input
               type="text"
-              id="last-name"
-              name="last-name"
+              id="surname"
+              name="surname"
               required
-              placeholder="last name"
+              placeholder="surname"
             />
 
             <input

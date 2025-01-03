@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Public/css/main.css" />
-    <title>Cinema</title>
+    <title>CineReserve</title>
 </head>
 <body>
     <header>
-        <h1>Cinema</h1>
+        <h1>CineReserve</h1>
         <nav>
             <a href="#">Home</a>
             <a href="#">Movies</a>

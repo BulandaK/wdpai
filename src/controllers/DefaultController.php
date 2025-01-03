@@ -8,6 +8,10 @@ class DefaultController extends AppController{
         
         $this->render('main');
     }
+    public function main() {
+        
+        $this->render('main');
+    }
     public function reserve() {
         
         $this->render('reserve');

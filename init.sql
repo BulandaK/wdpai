@@ -11,6 +11,6 @@ CREATE TABLE users (
 -- Dodanie przykładowych użytkowników
 INSERT INTO users (email, password, name, surname)
 VALUES
-('jsnow@pk.edu.pl', 'password123', 'John', 'Snow'),
-('ada.lovelace@example.com', 'securepass', 'Ada', 'Lovelace'),
-('alan.turing@example.com', 'turingpass', 'Alan', 'Turing');
+('jsnow@pk.edu.pl', '$2y$10$hashed_password_here', 'John', 'Snow');
+-- haslo to password123
+

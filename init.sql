@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,      -- Hasło użytkownika
     name VARCHAR(100) NOT NULL,          -- Imię użytkownika
     surname VARCHAR(100) NOT NULL,       -- Nazwisko użytkownika
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Data utworzenia konta
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data utworzenia konta
+    is_admin BOOLEAN DEFAULT FALSE       -- Flaga: czy użytkownik jest administratorem
 );
 
 -- Tworzenie tabeli filmów
@@ -48,9 +49,10 @@ CREATE TABLE IF NOT EXISTS reservations (
 );
 
 -- Przykładowi użytkownicy
-INSERT INTO users (email, password, name, surname) VALUES
-('john.doe@example.com', 'password123', 'John', 'Doe'),
-('jane.smith@example.com', 'password456', 'Jane', 'Smith');
+-- Przykładowi użytkownicy
+INSERT INTO users (email, password, name, surname, is_admin) VALUES
+('john.doe@example.com', 'password123', 'John', 'Doe', true),  -- Admin
+('jane.smith@example.com', 'password456', 'Jane', 'Smith', false); -- Zwykły użytkownik
 
 -- Przykładowe filmy
 INSERT INTO movies (title, description, release_date) VALUES

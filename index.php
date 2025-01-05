@@ -16,5 +16,7 @@ Routing::post('logout', 'SecurityController'); // Wylogowanie
 Routing::get('reserve', 'DefaultController');
 Routing::post('reserveSeats', 'SeatsController');
 
+Routing::post('addMovie', 'MovieController');
+
 
 Routing::run($path);

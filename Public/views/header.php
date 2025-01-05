@@ -4,6 +4,10 @@ session_start();
 <header>
     <div class="logo">CineReserve</div>
     <nav>
+        <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+            <a href="/adminPage">Admin Panel</a>
+        <?php endif; ?>
+
         <a href="/main">Home</a>
         <a href="/movies">Movies</a>
         <a href="/about">About</a>
@@ -12,5 +16,6 @@ session_start();
         <?php else: ?>
             <a href="/login">Login</a>
         <?php endif; ?>
+
     </nav>
 </header>

@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Public/css/main.css" />
     <title>CineReserve</title>
 </head>
+
 <body>
-    <header>
-        <h1>CineReserve</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Movies</a>
-            <a href="/login">Sign In</a>
-            <a href="/signUp">Sign Up</a>
-        </nav>
-    </header>
+    <?php include __DIR__ . '/header.php'; ?>
     <div class="banner">
-    <img src="../Public/img/baners/film2-baner.jpeg" alt="" />
+        <img src="../Public/img/baners/film2-baner.jpeg" alt="" />
     </div>
     <section class="movies-section">
         <h2>Upcoming Movies</h2>
@@ -46,4 +40,5 @@
         </div>
     </section>
 </body>
+
 </html>

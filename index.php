@@ -10,6 +10,6 @@ Routing::get('main','DefaultController');
 Routing::get('reserve','DefaultController');
 Routing::post('login','SecurityController');
 Routing::post('signUp','SecurityController');
-
+Routing::post('reserveSeats', 'SecurityController');
 
 Routing::run($path);

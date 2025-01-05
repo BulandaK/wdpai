@@ -64,13 +64,6 @@ main {
   border-radius: 5px;
 }
 
-.seating {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  margin: 1rem 0;
-}
-
 .seat {
   width: 20px;
   height: 20px;
@@ -78,15 +71,16 @@ main {
 }
 
 .seat.available {
-  background: orange;
+  background-color: orange;
 }
 
 .seat.reserved {
-  background: purple;
+  background-color: purple;
+  cursor: not-allowed;
 }
 
 .reserve-btn {
-  background: white;
+  background-color: white;
   color: black;
   padding: 0.5rem 1rem;
   border: none;
@@ -95,6 +89,24 @@ main {
 }
 
 .reserve-btn:hover {
-  background: orange;
+  background-color: orange;
   color: white;
+}
+.seating {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 miejsc w rzędzie */
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  background-color: orange;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.seat.selected {
+  background-color: green;
 }

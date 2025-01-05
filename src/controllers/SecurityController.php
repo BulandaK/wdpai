@@ -32,6 +32,11 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
         session_start();
+        if ($user->getIsAdmin()) {
+            $_SESSION['is_admin'] = true;
+        } else {
+            $_SESSION['is_admin'] = false;
+        }
         // Przechowywanie `userId` w sesji
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_name'] = $user->getName();
@@ -68,39 +73,6 @@ class SecurityController extends AppController
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: ${url}/login");
-    }
-
-    public function reserveSeats()
-    {
-
-        // Ustaw nagłówek JSON
-        header('Content-Type: application/json');
-        if (!$this->isPost()) {
-            return $this->render('reserve');
-        }
-
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data) {
-            echo json_encode(['success' => false, 'message' => 'No data received']);
-            return;
-        }
-
-
-        $seats = $data['seats'];
-
-        $screeningId = 1; // Na podstawie wybranego seansu
-        $userId = 1; // Zakładamy, że użytkownik jest zalogowany
-
-        $seatRepository = new SeatRepository(); // Tworzenie obiektu wewnątrz bloku try
-
-        foreach ($seats as $seat) {
-            [$row, $number] = explode('-', $seat);
-
-            $seatId = $seatRepository->getSeatId($row, $number); // Użycie repozytorium
-            $seatRepository->reserveSeat($userId, $screeningId, $seatId); // Użycie repozytorium
-        }
-
-        echo json_encode(['success' => true]);
     }
 
     public function logout()

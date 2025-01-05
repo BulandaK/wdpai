@@ -1,31 +1,16 @@
 <?php
 session_start(); // Uruchomienie sesji na początku pliku
 
-require_once __DIR__ . '/../../Database.php'; // Upewnij się, że include jest za `session_start`
+require_once __DIR__ . '/../../src/repository/SeatRepository.php';
 
-$database = new Database();
-$conn = $database->connect();
+$seatsRepository = new SeatRepository();
 
 // ID seansu, które można przekazać jako parametr GET lub POST
 $screeningId = $_GET['screeningId'] ?? 1; // Domyślnie seans o ID 1
 
-// Pobierz ID zarezerwowanych miejsc dla danego seansu
-$stmt = $conn->prepare('
-          SELECT seat_id FROM reservations WHERE screening_id = :screeningId
-      ');
-$stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
-$stmt->execute();
-$reservedSeats = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-// Pobierz wszystkie miejsca w danej sali (np. sala 1)
-$stmt = $conn->prepare('
-          SELECT * FROM seats WHERE room_number = (
-              SELECT room_number FROM screenings WHERE id = :screeningId
-          )
-      ');
-$stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
-$stmt->execute();
-$seats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Pobierz zarezerwowane miejsca i wszystkie miejsca w sali
+$reservedSeats = $seatsRepository->getReservedSeats($screeningId);
+$seats = $seatsRepository->getSeatsByScreening($screeningId);
 ?>
 <!DOCTYPE html>
 <html lang="en">

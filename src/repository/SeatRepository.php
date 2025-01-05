@@ -27,4 +27,28 @@ class SeatRepository extends Repository
         $stmt->bindParam(':seatId', $seatId, PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    public function getReservedSeats(int $screeningId): array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT seat_id FROM reservations WHERE screening_id = :screeningId
+        ');
+        $stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function getSeatsByScreening(int $screeningId): array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM seats WHERE room_number = (
+                SELECT room_number FROM screenings WHERE id = :screeningId
+            )
+        ');
+        $stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

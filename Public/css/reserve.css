@@ -14,23 +14,7 @@ body {
   height: 100vh;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.1);
-}
 
-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-header nav a {
-  color: white;
-  margin-left: 1rem;
-  text-decoration: none;
-}
 
 main {
   display: flex;

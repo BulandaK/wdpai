@@ -20,6 +20,7 @@ class MovieRepository extends Repository
         }
 
         return new Movie(
+            $movie['id'],
             $movie['title'],
             $movie['description'],
             $movie['release_date'],
@@ -60,13 +61,16 @@ class MovieRepository extends Repository
 
         foreach ($movies as $movie) {
             $result[] = new Movie(
+                $movie['id'],
                 $movie['title'],
                 $movie['description'],
                 $movie['release_date'],
-                $movie['file']
+                $movie['file'],
+
             );
         }
 
         return $result;
     }
+
 }

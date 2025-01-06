@@ -6,7 +6,6 @@ require_once __DIR__ . '/../repository/MovieRepository.php';
 
 class MovieController extends AppController
 {
-
     const MAX_FILE_SIZE = 1024 * 1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
@@ -14,29 +13,45 @@ class MovieController extends AppController
     private $message = [];
     private $movieRepository;
 
-
     public function __construct()
     {
         parent::__construct();
         $this->movieRepository = new MovieRepository();
     }
 
+    public function movies()
+    {
+        $movies = $this->movieRepository->getAllMovies();
+        return $this->render('movies', ['movies' => $movies]);
+    }
+
     public function addMovie()
     {
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+            // Przenieś plik do katalogu upload
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
             );
 
-            // TODO create new project object and save it in database
-            $movie = new Movie($_POST['title'], $_POST['description'], '2025-01-04', $_FILES['file']['name']);
+            // Utwórz obiekt filmu i zapisz go w bazie
+            $movie = new Movie(
+                null, // `id` będzie automatycznie generowane przez bazę danych
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['release_date'],
+                $_FILES['file']['name']
+            );
             $this->movieRepository->addMovie($movie);
 
-
-            return $this->render('reserve', ['messages' => $this->message]);
+            $this->message[] = 'Movie added successfully!';
+            return $this->render('movies', [
+                'messages' => $this->message,
+                'movies' => $this->movieRepository->getAllMovies()
+            ]);
         }
-        return $this->render('main', ['messages' => $this->message]);
+
+        return $this->render('add-movie', ['messages' => $this->message]);
     }
 
     private function validate(array $file): bool
@@ -52,7 +67,4 @@ class MovieController extends AppController
         }
         return true;
     }
-
-
-
 }

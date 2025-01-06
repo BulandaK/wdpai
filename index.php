@@ -17,6 +17,10 @@ Routing::get('reserve', 'DefaultController');
 Routing::post('reserveSeats', 'SeatsController');
 
 Routing::post('addMovie', 'MovieController');
+Routing::get('movies', 'MovieController');
+
+Routing::post('addScreening', 'ScreeningController');
+
 
 
 Routing::run($path);

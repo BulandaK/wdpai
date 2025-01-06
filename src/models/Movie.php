@@ -2,18 +2,20 @@
 
 class Movie
 {
-    private $title;
-    private $description;
-    private $release_date;
-    private $file;
+    private ?int $id;
+    private string $title;
+    private string $description;
+    private string $release_date;
+    private string $file;
 
-    // Konstruktor
     public function __construct(
+        ?int $id = null, // Ustawienie wartości domyślnej
         string $title,
         string $description,
         string $release_date,
         string $file
     ) {
+        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->release_date = $release_date;
@@ -21,6 +23,10 @@ class Movie
     }
 
     // Gettery
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
     public function getTitle(): string
     {
         return $this->title;

@@ -13,7 +13,13 @@ class ScreeningController extends AppController
         parent::__construct();
         $this->screeningRepository = new ScreeningRepository();
     }
+    public function screeningsList()
+    {
+        $screeningRepository = new ScreeningRepository();
+        $screenings = $screeningRepository->getAllScreeningsWithMovies();
 
+        $this->render('screeningsList', ['screenings' => $screenings]);
+    }
     public function addScreening()
     {
         if (!$this->isPost()) {

@@ -18,7 +18,7 @@ session_start();
     <?php include __DIR__ . '/header.php'; ?>
     <div class="container">
         <?php foreach ($movies as $movie): ?>
-            <div class="movie-card" onclick="location.href='/reserve?movieId=<?= $movie->getId() ?>'">
+            <div class="movie-card" onclick="location.href='/reserve.php?movieId=<?= $movie->getId() ?>'">
                 <img src="../Public/uploads/<?= htmlspecialchars($movie->getFile()) ?>"
                     alt="<?= htmlspecialchars($movie->getTitle()) ?>">
                 <div class="movie-info">

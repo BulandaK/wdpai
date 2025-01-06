@@ -4,6 +4,7 @@ require_once 'AppController.php';
 require_once __DIR__ . '/../models/Movie.php';
 require_once __DIR__ . '/../repository/MovieRepository.php';
 
+
 class MovieController extends AppController
 {
     const MAX_FILE_SIZE = 1024 * 1024;
@@ -24,6 +25,7 @@ class MovieController extends AppController
         $movies = $this->movieRepository->getAllMovies();
         return $this->render('movies', ['movies' => $movies]);
     }
+
 
     public function addMovie()
     {

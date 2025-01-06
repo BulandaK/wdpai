@@ -20,6 +20,7 @@ Routing::post('addMovie', 'MovieController');
 Routing::get('movies', 'MovieController');
 
 Routing::post('addScreening', 'ScreeningController');
+Routing::get('screeningsList', 'ScreeningController');
 
 
 

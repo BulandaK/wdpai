@@ -44,4 +44,25 @@ class ScreeningRepository extends Repository
 
         return $result;
     }
+    public function getAllScreeningsWithMovies(): array
+    {
+        $stmt = $this->database->connect()->prepare('
+        SELECT 
+            screenings.id AS screening_id,
+            screenings.screening_time,
+            screenings.room_number,
+            movies.title,
+            movies.description,
+            movies.release_date,
+            movies.file
+        FROM screenings
+        INNER JOIN movies ON screenings.movie_id = movies.id
+        ORDER BY screenings.screening_time
+    ');
+        $stmt->execute();
+
+        $screenings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $screenings;
+    }
+
 }

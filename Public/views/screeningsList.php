@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies - Screenings</title>
     <link rel="stylesheet" href="../Public/css/screeningList.css">
+    <link rel="stylesheet" href="../Public/css/header.css">
 </head>
 
 <body>

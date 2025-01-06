@@ -11,6 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
     <link rel="stylesheet" href="../Public/css/movies.css">
+    <link rel="stylesheet" href="../Public/css/header.css">
 
 </head>
 

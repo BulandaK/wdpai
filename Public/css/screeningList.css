@@ -12,34 +12,7 @@
     line-height: 1.6;
   }
   
-  /* Nagłówek */
-  header {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 1rem;
-    font-size: 1rem;
-    transition: color 0.3s;
-  }
-  
-  header nav a:hover {
-    color: #f39c12;
-  }
-  
+
   /* Główna sekcja */
   main {
     max-width: 1200px;

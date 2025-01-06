@@ -13,6 +13,7 @@ $movies = $movieRepository->getAllMovies(); // Pobierz wszystkie filmy
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineReserve - Admin Page</title>
     <link rel="stylesheet" href="../Public/css/reserve.css" />
+    <link rel="stylesheet" href="../Public/css/header.css" />
 
 
 </head>

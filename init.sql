@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS movies (
     id SERIAL PRIMARY KEY,               -- Unikalny identyfikator filmu
     title VARCHAR(255) NOT NULL,         -- Tytuł filmu
     description TEXT,                    -- Opis filmu
-    release_date DATE NOT NULL           -- Data premiery
+    release_date DATE NOT NULL,          -- Data premiery
+    file VARCHAR(255) NOT NULL DEFAULT 'default.png' -- Nazwa pliku powiązanego z filmem
 );
 
 -- Tworzenie tabeli seansów

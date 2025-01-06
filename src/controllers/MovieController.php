@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__ . '/../models/Movie.php';
+require_once __DIR__ . '/../repository/MovieRepository.php';
 
 class MovieController extends AppController
 {
@@ -11,6 +12,14 @@ class MovieController extends AppController
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
     private $message = [];
+    private $movieRepository;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->movieRepository = new MovieRepository();
+    }
 
     public function addMovie()
     {
@@ -22,8 +31,10 @@ class MovieController extends AppController
 
             // TODO create new project object and save it in database
             $movie = new Movie($_POST['title'], $_POST['description'], '2025-01-04', $_FILES['file']['name']);
+            $this->movieRepository->addMovie($movie);
 
-            return $this->render('reserve', ['messages' => $this->message, 'movie' => $movie]);
+
+            return $this->render('reserve', ['messages' => $this->message]);
         }
         return $this->render('main', ['messages' => $this->message]);
     }

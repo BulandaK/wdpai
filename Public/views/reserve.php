@@ -66,9 +66,9 @@ $seats = $seatsRepository->getSeatsByScreening($screeningId);
 
   <main>
     <section class="featured-movie">
-      <img src="../Public/uploads/<? $movie->getImage() ?>" alt="Featured Movie" class="movie-image" />
+      <img src="../Public/img/baners/film1-baner.jpeg" alt="Featured Movie" class="movie-image" />
       <div class="movie-info">
-        <h2><? $movie->getTitle() ?></h2>
+        <h2>Movie movie movie</h2>
         <p>
           Experience the thrill and excitement in our featured cinematic
           presentation. Reserve your seats now!

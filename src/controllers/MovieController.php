@@ -30,15 +30,14 @@ class MovieController extends AppController
     public function addMovie()
     {
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            // Przenieś plik do katalogu upload
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
             );
 
-            // Utwórz obiekt filmu i zapisz go w bazie
+
             $movie = new Movie(
-                null, // `id` będzie automatycznie generowane przez bazę danych
+                null,
                 $_POST['title'],
                 $_POST['description'],
                 $_POST['release_date'],

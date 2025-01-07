@@ -133,7 +133,7 @@ class SeatRepository extends Repository
         $stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_COLUMN); // Zwraca jednowymiarową tablicę seat_id
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
 }

@@ -11,89 +11,179 @@ body {
   background-repeat: no-repeat;
   color: white;
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
-
 
 main {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
   padding: 2rem;
 }
 
 .featured-movie,
 .reservation-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  padding: 1rem;
-  width: 45%;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  max-width: 30vw;
+  flex: 1;
+  min-width: 300px;
 }
 
-.movie-image {
+.featured-movie img {
   width: 100%;
   border-radius: 10px;
 }
 
 .movie-info h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.movie-info p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.reservation-section h2,
+.reservation-section h3 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .reservation-section input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.8rem;
   margin: 1rem 0;
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
-.seat {
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-}
-
-.seat.available {
-  background-color: orange;
-}
-
-.seat.reserved {
-  background-color: purple;
-  cursor: not-allowed;
-}
-
-.reserve-btn {
-  background-color: white;
-  color: black;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.reserve-btn:hover {
-  background-color: orange;
-  color: white;
-}
 .seating {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 miejsc w rzędzie */
+  grid-template-columns: repeat(12, 0fr);
   gap: 10px;
   justify-content: center;
 }
 
 .seat {
-  width: 30px;
-  height: 30px;
-  background-color: orange;
+  width: 25px;
+  height: 25px;
+  background-color: #F78941;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  
+}
+
+.seat:hover {
+  transform: scale(1.1);
+}
+
+.seat.available {
+  background-color: #F78941;
+}
+
+.seat.reserved {
+  background-color: #583D63;
+  cursor: not-allowed;
+}
+
+.seat.reserved-by-user {
+  background-color: royalblue;
 }
 
 .seat.selected {
-  background-color: green;
+  background-color: #6493ff;
 }
-.reserved-by-user{
-  background-color: royalblue;
+
+.reserve-btn {
+  display: block;
+  margin: 1rem auto;
+  background-color: white;
+  color: black;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.reserve-btn:hover {
+  background-color: #6493ff;
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  body {
+    padding: 1rem;
+  }
+  main{
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .featured-movie,
+.reservation-section{
+  max-width: 60vw;
+  width: 60vw;
+}
+  .seating {
+    grid-template-columns: repeat(12, 0.2fr);
+    gap: 10px;
+  }
+
+  .seat {
+    width: 25px;
+    height: 25px;
+    /* border: 1px solid black; */
+  }
+
+  .reserve-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .seat {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-width: 440px) {
+  body {
+    padding: 1rem;
+  }
+  .seating {
+    grid-template-columns: repeat(12, 0fr);
+    gap: 0px;
+  }
+
+  .movie-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .movie-info p {
+    font-size: 0.9rem;
+  }
+
+  .seat {
+    width: 22px;
+    height: 22px;
+    border: 1px solid black;
+  }
+
+  .reserve-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.5rem;
+  }
 }

@@ -65,4 +65,16 @@ class ScreeningRepository extends Repository
         return $screenings;
     }
 
+    public function getScreeningDetails(int $screeningId): array
+    {
+        $stmt = $this->database->connect()->prepare('
+        SELECT movie_id, screening_time, room_number
+        FROM screenings
+        WHERE id = :screeningId
+    ');
+        $stmt->bindParam(':screeningId', $screeningId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

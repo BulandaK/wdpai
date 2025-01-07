@@ -110,7 +110,7 @@ class SecurityController extends AppController
             session_start();
         }
 
-        // Usuń wszystkie dane z sesji
+
         session_unset();
         session_destroy();
 

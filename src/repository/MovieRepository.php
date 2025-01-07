@@ -35,13 +35,13 @@ class MovieRepository extends Repository
             VALUES (:title, :description, :release_date, :file)
         ');
 
-        // Przypisanie wyników metod do zmiennych
+
         $title = $movie->getTitle();
         $description = $movie->getDescription();
         $release_date = $movie->getReleaseDate();
         $file = $movie->getFile();
 
-        // Przekazanie zmiennych do bindParam
+
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':release_date', $release_date, PDO::PARAM_STR);

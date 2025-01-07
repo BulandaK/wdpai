@@ -25,11 +25,11 @@ class DefaultController extends AppController
     {
         session_start();
 
-        // Sprawdzenie, czy użytkownik jest zalogowany jako admin
+
         if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
-            $this->render('adminPage'); // Renderuj stronę administratora
+            $this->render('adminPage');
         } else {
-            header('Location: /main'); // Przekierowanie na stronę główną, jeśli nie jest adminem
+            header('Location: /main');
             exit();
         }
     }

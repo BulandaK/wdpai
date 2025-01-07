@@ -30,14 +30,14 @@ class SeatsController extends AppController
 
         $seats = $data['seats'];
 
-        // Pobierz ID seansu z parametru GET
+
         $screeningId = isset($_GET['screeningId']) ? (int) $_GET['screeningId'] : null;
         if (!$screeningId) {
             echo json_encode(['success' => false, 'message' => 'Invalid screening ID']);
             return;
         }
 
-        $userId = $_SESSION['user_id']; // ID zalogowanego użytkownika
+        $userId = $_SESSION['user_id'];
 
         $seatRepository = new SeatRepository();
 
@@ -51,8 +51,8 @@ class SeatsController extends AppController
         foreach ($seats as $seat) {
             [$row, $number] = explode('-', $seat);
 
-            $seatId = $seatRepository->getSeatId($roomNumber, $row, $number); // Pobierz ID miejsca
-            $seatRepository->reserveSeat($userId, $screeningId, $seatId); // Zarezerwuj miejsce
+            $seatId = $seatRepository->getSeatId($roomNumber, $row, $number);
+            $seatRepository->reserveSeat($userId, $screeningId, $seatId);
         }
 
         echo json_encode(['success' => true]);

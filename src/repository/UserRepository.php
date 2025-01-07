@@ -56,4 +56,15 @@ class UserRepository extends Repository
         }
     }
 
+    public function getAllUsers(): array
+    {
+        $stmt = $this->database->connect()->prepare('
+        SELECT id, email, name, surname, is_admin
+        FROM users
+    ');
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Tablica asocjacyjna użytkowników
+    }
+
 }

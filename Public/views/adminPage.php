@@ -1,8 +1,13 @@
 <?php
+require_once __DIR__ . '/../../src/repository/UserRepository.php';
 require_once __DIR__ . '/../../src/repository/MovieRepository.php';
 
 $movieRepository = new MovieRepository();
 $movies = $movieRepository->getAllMovies(); // Pobierz wszystkie filmy
+
+
+$userRepository = new UserRepository();
+$users = $userRepository->getAllUsers(); // Pobierz wszystkich użytkowników
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +17,7 @@ $movies = $movieRepository->getAllMovies(); // Pobierz wszystkie filmy
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineReserve - Admin Page</title>
-    <link rel="stylesheet" href="../Public/css/reserve.css" />
+    <link rel="stylesheet" href="../Public/css/admin.css" />
     <link rel="stylesheet" href="../Public/css/header.css" />
 
 
@@ -55,6 +60,31 @@ $movies = $movieRepository->getAllMovies(); // Pobierz wszystkie filmy
             </form>
         </section>
 
+        <section class="user-list">
+            <h2>Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($user['id']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['name']) ?></td>
+                            <td><?= htmlspecialchars($user['surname']) ?></td>
+                            <td><?= $user['is_admin'] ? 'Admin' : 'User' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </section>
 
     </main>
 </body>

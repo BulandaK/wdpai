@@ -75,6 +75,7 @@ class SecurityController extends AppController
         header("Location: ${url}/login");
     }
 
+
     public function logout()
     {
         if (session_status() === PHP_SESSION_NONE) {

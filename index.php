@@ -12,6 +12,7 @@ Routing::get('adminPage', 'DefaultController');
 Routing::post('signUp', 'SecurityController');
 Routing::post('login', 'SecurityController');
 Routing::post('logout', 'SecurityController'); // Wylogowanie
+Routing::post('deleteUser', 'SecurityController');
 
 Routing::get('reserve', 'DefaultController');
 Routing::post('reserveSeats', 'SeatsController');

@@ -75,6 +75,34 @@ class SecurityController extends AppController
         header("Location: ${url}/login");
     }
 
+    public function deleteUser()
+    {
+
+        if (!$this->isPost()) {
+            http_response_code(400);
+            echo "Invalid request method";
+            return;
+        }
+
+        $userId = $_POST['user_id'] ?? null;
+        if (!$userId) {
+            http_response_code(400);
+            echo "Invalid user ID";
+            return;
+        }
+
+        $userRepository = new UserRepository();
+        $success = $userRepository->deleteUserById($userId);
+
+        if ($success) {
+            header('Location: /adminPage');
+            exit();
+        } else {
+            http_response_code(500);
+            echo "Failed to delete user";
+        }
+    }
+
 
     public function logout()
     {

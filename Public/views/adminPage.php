@@ -70,6 +70,7 @@ $users = $userRepository->getAllUsers(); // Pobierz wszystkich użytkowników
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Role</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,11 +81,19 @@ $users = $userRepository->getAllUsers(); // Pobierz wszystkich użytkowników
                             <td><?= htmlspecialchars($user['name']) ?></td>
                             <td><?= htmlspecialchars($user['surname']) ?></td>
                             <td><?= $user['is_admin'] ? 'Admin' : 'User' ?></td>
+                            <td>
+                                <form action="/deleteUser" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </section>
+
 
     </main>
 </body>

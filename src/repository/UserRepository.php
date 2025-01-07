@@ -66,5 +66,19 @@ class UserRepository extends Repository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Tablica asocjacyjna użytkowników
     }
+    public function deleteUserById(int $userId): bool
+    {
+        try {
+            $stmt = $this->database->connect()->prepare('
+            DELETE FROM users WHERE id = :userId
+        ');
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Failed to delete user: " . $e->getMessage());
+            return false;
+        }
+    }
+
 
 }

@@ -49,6 +49,19 @@ CREATE TABLE IF NOT EXISTS reservations (
     UNIQUE (screening_id, seat_id)       -- Unikalność miejsca na danym seansie
 );
 
+CREATE OR REPLACE FUNCTION delete_user_reservations() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM reservations WHERE user_id = OLD.id;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_delete_user_reservations
+AFTER DELETE ON users
+FOR EACH ROW
+EXECUTE FUNCTION delete_user_reservations();
+
+
 -- Przykładowi użytkownicy
 -- Przykładowi użytkownicy
 INSERT INTO users (email, password, name, surname, is_admin) VALUES

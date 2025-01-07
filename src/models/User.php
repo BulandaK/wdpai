@@ -2,12 +2,12 @@
 
 class User
 {
-    private $id;
-    private $email;
-    private $password;
-    private $name;
-    private $surname;
-    private $is_admin;
+    private int $id;
+    private string $email;
+    private string $password;
+    private string $name;
+    private string $surname;
+    private bool $is_admin;
 
     public function __construct(
         int $id,

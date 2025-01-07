@@ -30,7 +30,7 @@ session_start();
                             <p>Release Date: <?= htmlspecialchars($screening['release_date']) ?></p>
                             <p>Screening Time: <?= htmlspecialchars($screening['screening_time']) ?></p>
                             <p>Room: <?= htmlspecialchars($screening['room_number']) ?></p>
-                            <a href="/reserve.php?screeningId=<?= $screening['screening_id'] ?>" class="reserve-button">Reserve
+                            <a href="/reserve?screeningId=<?= $screening['screening_id'] ?>" class="reserve-button">Reserve
                                 Seats</a>
                         </div>
                     </div>

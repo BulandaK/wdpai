@@ -94,3 +94,6 @@ main {
 .seat.selected {
   background-color: green;
 }
+.reserved-by-user{
+  background-color: royalblue;
+}

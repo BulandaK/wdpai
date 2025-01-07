@@ -9,11 +9,17 @@ class SeatsController extends AppController
 {
     public function reserveSeats()
     {
-
-        // Ustaw nagłówek JSON
         header('Content-Type: application/json');
+
         if (!$this->isPost()) {
-            return $this->render('reserve');
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+            return;
+        }
+
+        session_start();
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(['success' => false, 'message' => 'Sign in first']);
+            return;
         }
 
         $data = json_decode(file_get_contents('php://input'), true);
@@ -22,22 +28,35 @@ class SeatsController extends AppController
             return;
         }
 
-
         $seats = $data['seats'];
 
-        $screeningId = 1; // Na podstawie wybranego seansu
-        $userId = 1; // Zakładamy, że użytkownik jest zalogowany
+        // Pobierz ID seansu z parametru GET
+        $screeningId = isset($_GET['screeningId']) ? (int) $_GET['screeningId'] : null;
+        if (!$screeningId) {
+            echo json_encode(['success' => false, 'message' => 'Invalid screening ID']);
+            return;
+        }
 
-        $seatRepository = new SeatRepository(); // Tworzenie obiektu wewnątrz bloku try
+        $userId = $_SESSION['user_id']; // ID zalogowanego użytkownika
+
+        $seatRepository = new SeatRepository();
+
+        // Pobierz numer pokoju dla danego ID seansu
+        $roomNumber = $seatRepository->getRoomNumberByScreeningId($screeningId);
+        if (!$roomNumber) {
+            echo json_encode(['success' => false, 'message' => 'Invalid room number']);
+            return;
+        }
 
         foreach ($seats as $seat) {
             [$row, $number] = explode('-', $seat);
 
-            $seatId = $seatRepository->getSeatId($row, $number); // Użycie repozytorium
-            $seatRepository->reserveSeat($userId, $screeningId, $seatId); // Użycie repozytorium
+            $seatId = $seatRepository->getSeatId($roomNumber, $row, $number); // Pobierz ID miejsca
+            $seatRepository->reserveSeat($userId, $screeningId, $seatId); // Zarezerwuj miejsce
         }
 
         echo json_encode(['success' => true]);
     }
+
 
 }

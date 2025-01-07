@@ -66,11 +66,23 @@ INSERT INTO screenings (movie_id, screening_time, room_number) VALUES
 (1, '2025-01-05 21:00:00', 1),
 (2, '2025-01-06 20:00:00', 2);
 
--- Przykładowe miejsca w salach kinowych
-INSERT INTO seats (room_number, seat_row, seat_number) VALUES
-(1, 1, 1), (1, 1, 2), (1, 1, 3),
-(1, 2, 1), (1, 2, 2), (1, 2, 3),
-(2, 1, 1), (2, 1, 2), (2, 1, 3);
+
+-- Dodawanie miejsc do tabeli seats
+DO $$
+BEGIN
+    -- Iteracja po numerach sal
+    FOR room_number IN 1..12 LOOP
+        -- Iteracja po rzędach
+        FOR seat_row IN 1..6 LOOP
+            -- Iteracja po miejscach w rzędzie
+            FOR seat_number IN 1..12 LOOP
+                -- Wstawienie miejsca do tabeli
+                INSERT INTO seats (room_number, seat_row, seat_number)
+                VALUES (room_number, seat_row, seat_number);
+            END LOOP;
+        END LOOP;
+    END LOOP;
+END $$;
 
 -- Przykładowe rezerwacje
 INSERT INTO reservations (user_id, screening_id, seat_id) VALUES

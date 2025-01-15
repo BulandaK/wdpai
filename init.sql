@@ -71,7 +71,7 @@ INSERT INTO users (email, password, name, surname, is_admin) VALUES
 -- Przykładowe filmy
 INSERT INTO movies (title, description, release_date,file) VALUES
 ('Spider-man:homecoming', 'Superhero movie by Marvel', '2019-04-26','film-card1.jpeg'),
-('Taxi driver', 'Mind-bending thriller about american taxi driver', '1979-07-16','film-card2.jpeg');
+('Taxi driver', 'Mind-bending thriller about american taxi driver', '1979-07-16','film-card2.jpeg'),
 ('American Psycho', 'horror movie about corporate psycho', '1999-07-16','film-card4.jpeg');
 
 -- Przykładowe seanse

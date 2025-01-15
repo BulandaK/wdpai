@@ -69,9 +69,10 @@ INSERT INTO users (email, password, name, surname, is_admin) VALUES
 ('jane.smith@example.com', 'password456', 'Jane', 'Smith', false); -- Zwykły użytkownik
 
 -- Przykładowe filmy
-INSERT INTO movies (title, description, release_date) VALUES
-('Avengers: Endgame', 'Superhero movie by Marvel', '2019-04-26'),
-('Inception', 'Mind-bending thriller by Christopher Nolan', '2010-07-16');
+INSERT INTO movies (title, description, release_date,file) VALUES
+('Spider-man:homecoming', 'Superhero movie by Marvel', '2019-04-26','film-card1.jpeg'),
+('Taxi driver', 'Mind-bending thriller about american taxi driver', '1979-07-16','film-card2.jpeg');
+('American Psycho', 'horror movie about corporate psycho', '1999-07-16','film-card4.jpeg');
 
 -- Przykładowe seanse
 INSERT INTO screenings (movie_id, screening_time, room_number) VALUES

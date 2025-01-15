@@ -3,11 +3,15 @@ session_start();
 ?>
 <header>
     <div class="logo"><a href="/">CineReserve</a></div>
-    <nav>
+    <div class="hamburger-menu" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav id="nav-links">
         <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
             <a href="/adminPage">Admin Panel</a>
         <?php endif; ?>
-
         <a href="/main">Home</a>
         <a href="/movies">Movies</a>
         <a href="/screeningsList">Seances</a>
@@ -16,6 +20,6 @@ session_start();
         <?php else: ?>
             <a href="/login">Login</a>
         <?php endif; ?>
-
     </nav>
 </header>
+<script src="../Public/js/header.js"></script>

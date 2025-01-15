@@ -13,10 +13,14 @@ header .logo {
   font-weight: bold;
 }
 
+header nav {
+  display: flex;
+  gap: 10px;
+}
+
 header nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 10px;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -25,8 +29,51 @@ header nav a:hover {
   color: #ffd194;
 }
 
-.logo a{
-    text-decoration: none;
+.logo a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger-menu span {
+  background-color: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #ff7e5f;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  nav a {
+    font-size: 1.2rem;
     color: white;
-    font-size: 1.8rem;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+
+  nav.active {
+    display: flex;
+  }
 }

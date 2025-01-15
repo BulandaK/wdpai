@@ -95,7 +95,23 @@ form button:hover {
     .add-screening {
         width: 100%;
     }
+
+    .user-list table {
+        display: block;
+        overflow-x: auto; /* Dodaje przewijanie w poziomie */
+        white-space: nowrap; /* Zapobiega łamaniu tekstu */
+    }
+
+    .user-list table thead, .user-list table tbody {
+        display: table-row-group; /* Zapewnia kompatybilność z responsywnością */
+    }
+
+    .user-list tbody td, .user-list thead th {
+        padding: 8px;
+        font-size: 0.9rem; /* Zmniejsza czcionkę na małych ekranach */
+    }
 }
+
 
 .user-list {
     margin-top: 20px;
@@ -139,6 +155,3 @@ tbody td {
 tbody tr:hover {
     background: rgba(255, 255, 255, 0.2);
 }
-
-
-    

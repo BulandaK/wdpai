@@ -54,7 +54,8 @@ $users = $userRepository->getAllUsers(); // Pobierz wszystkich użytkowników
                 <input type="datetime-local" name="screening_time" id="screening_time" required>
 
                 <label for="room_number">Room Number</label>
-                <input type="number" name="room_number" id="room_number" placeholder="Room Number" required>
+                <input type="number" name="room_number" id="room_number" min="1" max="12" step="1"
+                    placeholder="Room Number" required>
 
                 <button type="submit">Add Screening</button>
             </form>
